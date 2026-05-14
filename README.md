@@ -21,6 +21,7 @@ skills/log-issue.md    →  /log-issue
 |---|---|
 | [sync-skills](skills/sync-skills.md) | Sync local Claude Code skill files to this repo (`SheldonFung98/agent-skills`) |
 | [log-issue](skills/log-issue.md) | Append a bug/issue entry to a project's `DEVLOG.md` from conversation context |
+| [diagnose-training](skills/diagnose-training.md) | Analyse a training log and append a new session block to `docs/training_diagnosis_v1.md` |
 
 ## Usage
 
@@ -33,3 +34,9 @@ Requires a `DEVLOG.md` file in the project root with a `## Bug & Issue Registry`
 Syncs skill files from `~/.claude/commands/` (and optionally `.claude/commands/`) to this
 repo. Clones the repo if not already present at `~/agent-skills/`, copies non-project-specific
 skills, commits, and pushes.
+
+### `/diagnose-training`
+Invoke after a new training log is available. Claude reads the log, extracts per-epoch metrics
+and loss events, identifies anomalies (spikes, NaN, warnings), then appends a new numbered
+`## Session N` block to `docs/training_diagnosis_v1.md`. Previously flagged issues are
+cross-referenced automatically.
